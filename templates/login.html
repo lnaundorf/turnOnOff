@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="password-container">
+        {% if error_message %}
+            <div class="alert alert-danger">
+                <strong>Fehler: </strong> {{ error_message }}
+            </div>
+        {% endif %}
+        <form method="POST">
+            <div class="form-group">
+                <label for="password">Passwort</label>
+                <input type="password" class="form-control" id="password" name="password">
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+{% endblock %}
+

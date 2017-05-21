@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div id="content">
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Initial state
+            too.updateState();
+            // Regular updateState
+            let interval = setInterval(too.updateState, 20000);
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,4 @@
+tornado==4.5.1
+Flask==0.12.1
+requests==2.14.2
+paramiko==2.1.2
