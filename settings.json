@@ -1,0 +1,20 @@
+{
+    "pimatic": {
+        "host": "http://192.168.x.y",
+        "username": "user",
+        "password": "password"
+    },
+    "password": "password",
+    "servers": [
+        {
+            "name": "Servername",
+            "pimatic_id": "pimatic-id",
+            "check_address": "http://192.168.x.y/check",
+            "ssh": {
+                "address": "192.168.x.y",
+                "username": "root",
+                "password": "password"
+            }
+        }
+    ]
+}
