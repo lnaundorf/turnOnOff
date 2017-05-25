@@ -57,7 +57,8 @@ var too = {
         let serverElement = $('<div class="server"></div>');
 
         serverElement.append('<div class="server-state-bubble bubble_' + server.state + '"></div>');
-        serverElement.append('<div class="server-name">' + server.name + '</div>');
+        let link = '<a href="' + server.check_address + '" target="_blank">' + server.name + '</a>';
+        serverElement.append('<div class="server-name">' + link + '</div>');
         serverElement.append(too.createButtonForServer(server));
         
         return serverElement;
