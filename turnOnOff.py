@@ -3,6 +3,7 @@ import requests
 import json
 import os.path
 from paramiko.client import SSHClient, AutoAddPolicy
+from decorators import password_protect
 
 CHECK_TIMEOUT_SECONDS = 1.0
 
@@ -32,6 +33,7 @@ class Status:
 
 
 @app.route('/status')
+@password_protect(PASSWORD)
 def check_status():
     for server in SERVERS.values():
         check_online(server)
@@ -80,8 +82,9 @@ def check_online(server):
         else:
             return set_server_state(server, Status.TURNED_ON)
 
-    
+
 @app.route('/server/<id>/turnOn')
+@password_protect(PASSWORD)
 def turn_on(id):
     server = SERVERS.get(id)
     if not server:
@@ -94,6 +97,7 @@ def turn_on(id):
 
 
 @app.route('/server/<id>/turnOff')
+@password_protect(PASSWORD)
 def turn_off(id):
     server = SERVERS.get(id)
     
@@ -141,10 +145,8 @@ def login_post():
 
 
 @app.route('/')
+@password_protect(PASSWORD)
 def index():
-    if PASSWORD and request.cookies.get('password') != PASSWORD:
-        return redirect(url_for('login_get'))
-
     print(json.dumps(SERVERS))
     return render_template('index.html')
     
