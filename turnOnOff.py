@@ -4,6 +4,7 @@ import json
 import os.path
 from paramiko.client import SSHClient, AutoAddPolicy
 from decorators import password_protect
+from datetime import datetime
 
 CHECK_TIMEOUT_SECONDS = 1.0
 
@@ -13,6 +14,8 @@ app.debug = True
 PIMATIC_CONFIG = None
 SERVERS = {}
 PASSWORD = None
+# The cookie should never expire
+COOKIE_EXPIRES = datetime(year=2100, month=1, day=1)
 
 __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
@@ -138,7 +141,7 @@ def login_post():
     if submitted_password == PASSWORD:
         # Password correct
         resp = make_response(redirect(url_for('index')))
-        resp.set_cookie('password', submitted_password)
+        resp.set_cookie('password', submitted_password, expires=COOKIE_EXPIRES)
         return resp
     else:
         return render_template("login.html", error_message="Falsches Passwort")
