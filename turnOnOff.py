@@ -76,7 +76,7 @@ def check_online(server):
     # Switch is on, check url
     try:
         response = requests.get(server['check_address'], timeout=CHECK_TIMEOUT_SECONDS)
-        print("Request: %s, Taken: %s ms" % (server['check_address'], str(response.elapsed.microseconds / 1000)))
+        #print("Request: %s, Taken: %s ms" % (server['check_address'], str(response.elapse).microseconds / 1000)))
         return set_server_state(server, Status.ONLINE)
     except Exception as e:
         print(e)
